@@ -18,5 +18,9 @@ class World {
 	public int getNextId() {
 		return OBJECT_NUMBER++;
 	}
+	
+	public void fillWorld(int layers, int x, int y) {
+		
+	}
 
 }
