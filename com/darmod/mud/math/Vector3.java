@@ -1,6 +1,6 @@
 package com.darmod.mud.math;
 
-class Vector3 {
+public class Vector3 {
 
 	public double[] xyz = new double[3];
 

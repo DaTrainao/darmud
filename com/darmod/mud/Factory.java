@@ -5,7 +5,7 @@ class Factory {
 
 	public static Block genEntity(String name) {
 		Block b = new Block(curr, name);
-
+		
 		return b;
 	}
 
