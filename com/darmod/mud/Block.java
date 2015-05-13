@@ -3,7 +3,7 @@ package com.darmod.mud;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class Block {
+public class Block {
 	private int id;
 	private ArrayList<String> flags = new ArrayList<String>();
 	private HashMap<String, Object> attributes;
