@@ -9,6 +9,8 @@ public class Player {
 	
 	public Player(String name) {
 		player = new Block(darmud.curr, name);
+		player.addFlag("player");
+		player.attr("desc", "A large dark man with an afro. He wears a suit.");
 	}
 	
 }
