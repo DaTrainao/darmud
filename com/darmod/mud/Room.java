@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import com.darmod.mud.math.*;
 
-class Room {
+public class Room {
 	private ArrayList<Block> items;
 	private int id;
 	private World w;
@@ -72,6 +72,21 @@ class Room {
 
 	public void attr(String key, Object val) {
 		attributes.put(key.toLowerCase(), val);
+	}
+
+	public Block getSub() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean contains(Object s) {
+		if(items.contains(s))
+			return true;
+		return false;
+	}
+
+	public Object getAttr(String string) {
+		return attributes.get(string);
 	}
 	
 }

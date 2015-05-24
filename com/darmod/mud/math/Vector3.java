@@ -13,7 +13,9 @@ public class Vector3 {
 	public Vector3(double[] array) {
 		if (array.length != 3)
 			throw new RuntimeException("Vector3 must contain exactly 3 values.");
-
+		xyz[0] = array[0];
+		xyz[1] = array[1];
+		xyz[2] = array[2];
 	}
 
 	public Vector3(double x, double y, double z) {
@@ -87,5 +89,16 @@ public class Vector3 {
 	public double getZ() {
 		return xyz[2];
 	}
+	
+	public void setX(double val) {
+		xyz[0] = val;
+	}
 
+	public void setY(double val) {
+		xyz[1] = val;
+	}
+
+	public void setZ(double val) {
+		xyz[2] = val;
+	}
 }

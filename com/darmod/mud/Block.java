@@ -11,6 +11,7 @@ public class Block {
 	public Block(World w) {
 		id = w.getNextId();
 		attributes = new HashMap<String, Object>();
+		attr("room", null);
 
 	}
 
@@ -18,6 +19,7 @@ public class Block {
 		id = w.getNextId();
 		attributes = new HashMap<String, Object>();
 		attr("name", name);
+		attr("room", null);
 
 	}
 
@@ -26,12 +28,14 @@ public class Block {
 		attributes = new HashMap<String, Object>();
 		attr("name", name);
 		attr("description", description);
+		attr("room", null);
 
 	}
 
 	public Block(Room r) {
 		id = r.getWorld().getNextId();
 		attributes = new HashMap<String, Object>();
+		attr("room", r);
 
 	}
 
@@ -39,6 +43,7 @@ public class Block {
 		id = r.getWorld().getNextId();
 		attributes = new HashMap<String, Object>();
 		attr("name", name);
+		attr("room", r);
 
 	}
 
@@ -47,6 +52,7 @@ public class Block {
 		attributes = new HashMap<String, Object>();
 		attr("name", name);
 		attr("description", description);
+		attr("room", r);
 
 	}
 
@@ -56,6 +62,14 @@ public class Block {
 
 	public void attr(String key, Object val) {
 		attributes.put(key.toLowerCase(), val);
+	}
+	
+	public Room getAboveRoom() {
+		return (Room) attributes.get("room");
+	}
+	
+	public Object getAttr(String attr) {
+		return attributes.get(attr);
 	}
 
 	public String toString() {
