@@ -2,6 +2,7 @@ package com.darmod.mud.ui;
 
 import java.util.HashMap;
 
+import com.darmod.mud.Block;
 import com.darmod.mud.Room;
 
 public abstract class Command {
@@ -21,42 +22,51 @@ public abstract class Command {
 		}
 	}
 
-	protected abstract void exec(Object[] args);
+	protected abstract void exec(Block user, Object[] args);
 
-	public void parse(String c, Object[] args) {
-		commands.get(c).exec(args);
+	public static void parse(String c, Block user, Object[] args) {
+		System.out.println("[SERVER] Running command '"+c+"' args '"+args+"'.");
+		if (commands.containsKey(c)) {
+			System.out.println("[SERVER] Command found!");
+			commands.get(c).exec(user, args);
+		} else
+			System.out.println("[SERVER] Command '"+c+"' not found.");
 	}
 
+	@SuppressWarnings("unused")
 	private static final Command look = new Command("look") {
 
 		@Override
-		protected void exec(Object[] args) {
-			Player p = (args[0].getClass().equals(Player.class) ? (Player) args[0]
-					: null);
-			if (args.length > 1) {
-				Room r;
-				if ( (r=p.getAboveRoom()) != null) {
-					for (Object s : args) {
-						if(r.contains(s)) {
-							p.sendText(""+r.getSub().getAttr("desc"));
+		protected void exec(Block user, Object[] args) {
+			Player p = (Player) user;
+			System.out.println("[SERVER] Command LOOK: player set to " + p.toString());
+			if(args != null) {
+				if (args.length > 1) {
+					Room r;
+					if ( (r=p.getAboveRoom()) != null) {
+						for (Object s : args) {
+							if(r.contains(s)) {
+								p.sendText(""+r.getSub().getAttr("desc"));
+							}
 						}
+					} else {
+						p.sendText(""+p.getAboveRoom().getAttr("desc"));
 					}
+				} else {
+					p.sendText(""+p.getAboveRoom().getAttr("desc"));
 				}
-			} else {
-				p.sendText(""+p.getAboveRoom().getAttr("desc"));
 			}
 		}
 
 	};
 	
+	@SuppressWarnings("unused")
 	private static final Command move = new Command("move") {
-
 		@Override
-		protected void exec(Object[] args) {
+		protected void exec(Block user, Object[] args) {
 			// TODO Auto-generated method stub
 			
 		}
 		
 	};
-	
 }

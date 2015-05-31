@@ -7,16 +7,22 @@ import com.darmod.mud.math.Vector3;
 public class World {
 	private static int OBJECT_NUMBER = 0;
 	private int width, height;
-	private ArrayList<Room> rooms;
+	private ArrayList<Room> rooms=new ArrayList<Room>();
+	private String name;
 
 	public World(String name) {
-
+		this.name=name;
 	}
 	
 	public World(String name, int height, int width) {
-		
+		this.name=name;
+		fillWorld(height, width, width);
 	}
 	
+	public String getName() {
+		return this.name;
+	}
+
 	public int getNextId() {
 		return OBJECT_NUMBER++;
 	}
