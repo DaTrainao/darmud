@@ -1,10 +1,13 @@
 package com.darmod.mud;
 
+import com.darmod.mud.ui.Command;
 import com.darmod.mud.ui.Player;
+
 import java.util.Scanner;
 
 public class darmud {
 	public static World default_world;
+	private static Scanner i = new Scanner(System.in);;
 	
 	public static void main(String args[]) {
 		default_world = new World("DEFAULT");
@@ -13,13 +16,18 @@ public class darmud {
 		Player p = new Player("Darius", default_world);
 		System.out.println("[Server] Game initialized with default player, Darius");
 		System.out.println("\nWelcome to Darmud!");
-		Scanner i = new Scanner(System.in);
 		String temp;
-
+		
+		Room randRoom = default_world.getRandomRoom();
+		
+		p.attr("room", randRoom);
+		randRoom.add(p);
+		
 		for(;;) {
-			System.out.print("[" + p.getAttr("name") + "@" + default_world.getName() + "] >");
+			System.out.print("[" + p.getAttr("name") + " @"  + default_world.getName() + "] > ");
 			temp = i.nextLine();
-			p.exec(temp);
+			if(temp != null && temp.length() > 0)
+				p.exec(temp);
 		}
 	}
 }

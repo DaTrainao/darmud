@@ -6,7 +6,7 @@ import java.util.HashMap;
 import com.darmod.mud.math.*;
 
 public class Room {
-	private ArrayList<Block> items;
+	private ArrayList<Block> items = new ArrayList<Block>();
 	private int id;
 	private World w;
 	private ArrayList<String> flags;
@@ -15,17 +15,24 @@ public class Room {
 
 	public Room(World w) {
 		id = w.getNextId();
+		attr("name", "Room " + id);
+		attr("desc", "Object #" + id + "\n name: " + this.getAttr("name"));
 		this.w = w;
 	}
 	
 	public Room(World w, String name) {
 		id = w.getNextId();
+		attr("name", "Room " + id);
+		attr("desc", "Object #" + id + "\n name: " + this.getAttr("name"));
 		this.w = w;
 	}
 	
 	public void add(Block b) {
-		id = w.getNextId();
-		items.add(b);
+		// id = w.getNextId();
+		if(b != null)
+			items.add(b);
+		else
+			System.out.println("[SEVER] [WARNING] Failed to add object \"" + b + "\" to room #" + this.id + ".");
 	}
 	
 	public void rem(Block b) {
@@ -52,6 +59,10 @@ public class Room {
 	
 	public void setCoor(Vector3 location) {
 		this.loc = location;
+	}
+	
+	public Block[] getSubs() {
+		return (Block[]) items.toArray();
 	}
 	
 	public int getId() {
@@ -86,7 +97,9 @@ public class Room {
 	}
 
 	public Object getAttr(String string) {
-		return attributes.get(string);
+		if(attributes.containsKey(string))
+			return attributes.get(string);
+		return null;
 	}
 	
 }

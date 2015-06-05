@@ -1,13 +1,14 @@
 package com.darmod.mud;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.darmod.mud.math.Vector3;
 
 public class World {
 	private static int OBJECT_NUMBER = 0;
 	private int width, height;
-	private ArrayList<Room> rooms=new ArrayList<Room>();
+	private ArrayList<Room> rooms = new ArrayList<Room>();
 	private String name;
 
 	public World(String name) {
@@ -48,5 +49,23 @@ public class World {
 			}
 		}
 	}
+	
+	public Room getRoom(String name) {
+		for(Room r : rooms)
+			if(r.getAttr(name).equals(name))
+				return r;
+		return null;
+	}
+	
+	public Room getRoom(int id) {
+		for(Room r : rooms)
+			if(r.getId() == id)
+				return r;
+		return null;
+	}
 
+	public Room getRandomRoom() {
+		return rooms.get( ( (int) (Math.random()*(rooms.size()-1-0))+0) );
+	}
+	
 }

@@ -12,6 +12,8 @@ public class Block {
 		id = w.getNextId();
 		attributes = new HashMap<String, Object>();
 		attr("room", null);
+		attr("name", "nill");
+		attr("desc", "Object #" + id + "\n name: " + this.getAttr("name"));
 
 	}
 
@@ -20,7 +22,8 @@ public class Block {
 		attributes = new HashMap<String, Object>();
 		attr("name", name);
 		attr("room", null);
-
+		attr("desc", "Object #" + id + "\n name: " + this.getAttr("name"));
+		
 	}
 
 	public Block(World w, String name, String description) {
@@ -29,6 +32,7 @@ public class Block {
 		attr("name", name);
 		attr("description", description);
 		attr("room", null);
+		attr("desc", "Object #" + id + "\n name: " + this.getAttr("name"));
 
 	}
 
@@ -36,6 +40,9 @@ public class Block {
 		id = r.getWorld().getNextId();
 		attributes = new HashMap<String, Object>();
 		attr("room", r);
+		attr("name","nill");
+		attr("desc", "Object #" + id + "\n name: " + this.getAttr("name"));
+		r.add(this);
 
 	}
 
@@ -44,6 +51,8 @@ public class Block {
 		attributes = new HashMap<String, Object>();
 		attr("name", name);
 		attr("room", r);
+		attr("desc", "Object #" + id + "\n name: " + this.getAttr("name"));
+		r.add(this);
 
 	}
 
@@ -53,6 +62,8 @@ public class Block {
 		attr("name", name);
 		attr("description", description);
 		attr("room", r);
+		attr("desc", "Object #" + id + "\n name: " + this.getAttr("name"));
+		r.add(this);
 
 	}
 
@@ -70,6 +81,10 @@ public class Block {
 	
 	public Object getAttr(String attr) {
 		return attributes.get(attr);
+	}
+	
+	public int getId() {
+		return id;
 	}
 
 	public String toString() {
